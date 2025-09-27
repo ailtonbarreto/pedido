@@ -40,23 +40,23 @@
     #botao-nao {
       position: absolute;
       top: 20px;
-      background-color: red;  
+      background-color: rgb(49, 216, 7);  
       left: calc(50% - 120px);
     }
 
     #botao-sim {
       position: absolute;
-      background-color: rgb(64, 206, 8);
+      background-color: rgb(243, 6, 6);
       top: 20px;
       left: calc(50% + 20px);
     }
   </style>
 </head>
 <body>
-  <h2>Você se considera uma pessoa competente?</h2>
+  <h2>Você aceita namorar comigo?</h2>
   <div class="container">
-    <button id="botao-sim">Sim</button>
-    <button id="botao-nao">Não</button>
+    <button id="botao-sim">Não</button>
+    <button id="botao-nao" onclick="window.location.href='https://wa.me/5516994632838'">Sim</button>
   </div>
   <script>
     const botaoSim = document.getElementById("botao-sim");
@@ -64,11 +64,6 @@
 
     const container = document.querySelector(".container");
 
-    botaoNao.addEventListener("click", function(){
-
-        alert("Resposta Registrada com Sucesso!");
-
-    })
 
     botaoSim.addEventListener("mouseover", () => {
       const containerWidth = container.clientWidth;
