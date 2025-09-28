@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,14 +19,16 @@
       font-family: sans-serif;
     }
 
-    h2{
-        color: #053568;
+    h2 {
+      color: #053568;
     }
+
     .container {
       position: relative;
       width: 90vw;
       height: 90vh;
     }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -40,7 +43,7 @@
     #botao-nao {
       position: absolute;
       top: 20px;
-      background-color: rgb(49, 216, 7);  
+      background-color: rgb(49, 216, 7);
       left: calc(50% - 120px);
     }
 
@@ -52,8 +55,9 @@
     }
   </style>
 </head>
+
 <body>
-  <h2>Você aceita namorar comigo?</h2>
+  <h2>Você aceita sair comigo?</h2>
   <div class="container">
     <button id="botao-sim">Não</button>
     <button id="botao-nao" onclick="window.location.href='https://wa.me/5516994632838'">Sim</button>
@@ -77,6 +81,21 @@
       botaoSim.style.left = `${newLeft}px`;
       botaoSim.style.top = `${newTop}px`;
     });
+
+    botaoSim.addEventListener("click", () => {
+      const containerWidth = container.clientWidth;
+      const containerHeight = container.clientHeight;
+      const simWidth = botaoSim.offsetWidth;
+      const simHeight = botaoSim.offsetHeight;
+
+      const newLeft = Math.random() * (containerWidth - simWidth);
+      const newTop = Math.random() * (containerHeight - simHeight);
+
+      botaoSim.style.left = `${newLeft}px`;
+      botaoSim.style.top = `${newTop}px`;
+    });
+
   </script>
 </body>
+
 </html>
