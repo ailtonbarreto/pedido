@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pesquisa</title>
   <style>
+    
     body {
       margin: 0;
       padding: 0;
@@ -53,21 +54,29 @@
       top: 20px;
       left: calc(50% + 20px);
     }
+
   </style>
+
 </head>
 
 <body>
+
   <h2>Você aceita sair comigo?</h2>
+
   <div class="container">
+
     <button id="botao-sim">Não</button>
+
     <button id="botao-nao" onclick="window.location.href='./tela2.html'">Sim</button>
+
   </div>
+
   <script>
+
     const botaoSim = document.getElementById("botao-sim");
     const botaoNao = document.getElementById("botao-nao");
 
     const container = document.querySelector(".container");
-
 
     botaoSim.addEventListener("mouseover", () => {
       const containerWidth = container.clientWidth;
@@ -80,6 +89,7 @@
 
       botaoSim.style.left = `${newLeft}px`;
       botaoSim.style.top = `${newTop}px`;
+
     });
 
     botaoSim.addEventListener("click", () => {
