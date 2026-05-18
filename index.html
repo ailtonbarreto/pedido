@@ -5,54 +5,153 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="/heart.png" type="image/x-icon">
-  <title>Pesquisa</title>
+  <title>Pedido de Casamento</title>
   <style>
+    :root {
+      --rose: #ff6f91;
+      --pink: #ff95c5;
+      --peach: #ffd6e8;
+      --midnight: #2e1036;
+      --cream: #fff5f8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      padding: 0;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      flex-direction: column;
       align-items: center;
-      height: 100vh;
-      background-color: #f0f0f0;
+      background: radial-gradient(circle at top left, var(--pink) 0%, transparent 35%),
+        radial-gradient(circle at bottom right, var(--rose) 0%, transparent 30%),
+        linear-gradient(135deg, var(--cream), #ffe8f5);
       overflow: hidden;
-      font-family: sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #3c1e42;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      width: 60%;
+      height: 80%;
+      padding: 30px;
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 30px 90px rgba(115, 41, 98, 0.15);
+      backdrop-filter: blur(10px);
     }
 
     h2 {
-      color: #053568;
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    p {
+      margin: 18px auto 30px;
+      max-width: 920px;
+      font-size: 1.05rem;
+      color: #5b2d57;
     }
 
     .container {
       position: relative;
-      width: 90vw;
-      height: 90vh;
+      width: 100%;
+      height: 300px;
+      margin-top: 12px;
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
+      position: absolute;
+      padding: 14px 24px;
+      font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
       border: none;
-      background-color: #007bff;
       color: #fff;
-      border-radius: 5px;
-      transition: all 0.2s ease;
+      border-radius: 999px;
+      box-shadow: 0 18px 30px rgba(255, 107, 166, 0.22);
+      transition: left 0.25s ease, top 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 36px rgba(255, 107, 166, 0.32);
     }
 
     #botao-nao {
-      position: absolute;
-      top: 20px;
-      background-color: rgb(49, 216, 7);
-      left: calc(50% - 120px);
+      left: calc(50% - 125px);
+      top: 170px;
+      background: linear-gradient(135deg, #06f096, #06c9af);
+      width: 140px;
     }
 
     #botao-sim {
+      left: calc(50% + 5px);
+      top: 170px;
+      background: linear-gradient(135deg, #ee033a, #ff75a2);
+      width: 140px;
+    }
+
+    .heart-background {
       position: absolute;
-      background-color: rgb(243, 6, 6);
-      top: 20px;
-      left: calc(50% + 20px);
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .heart-background span {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #fff, transparent 35%),
+        radial-gradient(circle at 70% 30%, #fff, transparent 35%),
+        linear-gradient(180deg, #ff8ac8 0%, #ff416c 100%);
+      transform: rotate(45deg);
+      border-radius: 50% 50% 0 0;
+      animation: floatHeart 7s infinite ease-in-out;
+      opacity: 0.9;
+    }
+
+    .heart-background span::before,
+    .heart-background span::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: inherit;
+      border-radius: 50%;
+      top: -9px;
+      left: 0;
+    }
+
+    .heart-background span::after {
+      left: 9px;
+    }
+
+    .heart-background span:nth-child(1) { left: 10%; top: 20%; animation-duration: 8s; }
+    .heart-background span:nth-child(2) { left: 80%; top: 15%; animation-duration: 6s; animation-delay: 1s; }
+    .heart-background span:nth-child(3) { left: 35%; top: 5%; animation-duration: 9s; animation-delay: 2s; }
+    .heart-background span:nth-child(4) { left: 55%; top: 40%; animation-duration: 10s; animation-delay: 1.8s; }
+    .heart-background span:nth-child(5) { left: 20%; top: 55%; animation-duration: 7.5s; animation-delay: 0.6s; }
+    .heart-background span:nth-child(6) { left: 75%; top: 60%; animation-duration: 8.5s; animation-delay: 1.3s; }
+
+    @keyframes floatHeart {
+      0%, 100% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
+      50% { transform: translateY(-24px) rotate(45deg); opacity: 0.55; }
+    }
+
+    .heart-highlight {
+      color: #d7005a;
+      font-size: 1.2em;
     }
   </style>
 
@@ -60,18 +159,27 @@
 
 <body>
 
-  <h2>Kelriah, Você aceita casar comigo?</h2>
+  <div class="page-content">
+    <h2>Kelriah, Você aceita casar comigo?</h2>
+    <br>
+    <span class="heart-highlight">💖</span> 
 
-  <div class="container">
+    <div class="container">
+      <button id="botao-sim">Não</button>
+      <button id="botao-nao"
+        onclick="window.open('https://wa.me/5516994632838?text=Ailton%2C%20meu%20amor.%20Claro%20que%20eu%20aceito%20casar%20com%20voc%C3%AA!%20', '_blank')">
+        Sim!
+      </button>
+    </div>
+  </div>
 
-    <button id="botao-sim">Não</button>
-
-    <button id="botao-nao"
-      onclick="window.open('https://wa.me/5516994632838?text=Ailton%2C%20meu%20amor.%20Claro%20que%20eu%20aceito%20casar%20com%20voc%C3%AA!%20', '_blank')">
-      Sim
-    </button>
-
-
+  <div class="heart-background">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
   <script>
